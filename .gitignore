@@ -1,0 +1,83 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables / secrets
+
+.env
+.env.*
+!.env.example
+
+# Streamlit
+
+.streamlit/secrets.toml
+
+# IDE / editors
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Logs
+
+*.log
+
+# Local databases
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Jupyter
+
+.ipynb_checkpoints/
+
+# Build / packaging
+
+build/
+dist/
+*.egg-info/
+
+# Testing / coverage
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+
+*.tmp
+*.temp
+
+# Ollama / local model files
+
+ollama_models/
+models/
+
+# Audio / generated files
+
+*.mp3
+*.wav
+*.m4a
+*.ogg
+
+# Generated reports / outputs
+
+outputs/
+reports/
