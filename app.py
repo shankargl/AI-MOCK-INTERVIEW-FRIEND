@@ -1,6 +1,44 @@
+import os
+from pathlib import Path
+
 import streamlit as st
 
-import dotenv
+
+class dotenv:
+    """Small dotenv-compatible helper used to load environment variables."""
+
+    @staticmethod
+    def load_dotenv(dotenv_path: str | os.PathLike[str] | None = None, *, override: bool = False) -> bool:
+        path = Path(dotenv_path) if dotenv_path else Path.cwd() / ".env"
+        if not path.exists():
+            return False
+
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if override or key not in os.environ:
+                os.environ[key] = value
+        return True
+
+    @staticmethod
+    def get_key(dotenv_path: str | os.PathLike[str] | None = None, key: str = "") -> str | None:
+        path = Path(dotenv_path) if dotenv_path else Path.cwd() / ".env"
+        if not path.exists() or not key:
+            return None
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if line.strip().startswith("#"):
+                continue
+            if "=" in line:
+                k, v = line.split("=", 1)
+                if k.strip() == key:
+                    return v.strip().strip('"').strip("'")
+        return None
+
+
 dotenv.load_dotenv()
 
 from langchain_core.runnables.history import RunnableWithMessageHistory
