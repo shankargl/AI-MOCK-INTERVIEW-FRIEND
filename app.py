@@ -1,7 +1,7 @@
 import streamlit as st
 
-from dotenv import load_dotenv
-load_dotenv()
+import dotenv
+dotenv.load_dotenv()
 
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from chain import interview_chain, feedback_chain
